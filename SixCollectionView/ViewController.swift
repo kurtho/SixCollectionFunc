@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import MapKit
+import MessageUI
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MFMailComposeViewControllerDelegate {
 
+
+
+    
+    
     @IBAction func testButton(sender: AnyObject) {
-        alertView()
-
+        
+        
     }
     
     var contents = [
@@ -32,6 +38,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,7 +84,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             break
         case 5:
-            
+            mailing()
             break
         default:
             break
@@ -117,12 +124,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     
-    
-//    let callActionHandler = { (action:UIAlertAction!) -> Void in
-//        let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .Alert)
-//        alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-//        presentViewController(alertMessage, animated: true, completion: nil)
-//    }
+    func mailing() {
+        let mail = MFMailComposeViewController()
+        let mailController = MFMailComposeViewController()
+        mail.setSubject("測試信件")
+        self.presentViewController(mail, animated: true, completion: nil)
+        mailController.mailComposeDelegate = self
+
+    }
+
+    func mailComposeController(controller:
+        MFMailComposeViewController, didFinishWithResult result:
+        MFMailComposeResult, error: NSError?) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     
 
