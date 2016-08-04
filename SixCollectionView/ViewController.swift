@@ -75,13 +75,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             print("111!11")
             break
         case 2:
-            
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://9809088798")!)
+
             break
         case 3:
-            
+            let appSetting = NSURL(string: UIApplicationOpenSettingsURLString)
+            UIApplication.sharedApplication().openURL(appSetting!)
             break
         case 4:
+            let encodedName = "104台北市中山區南京東路二段97號".stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
+            let path = "http://maps.apple.com/?q=" + encodedName!
+            if let url = NSURL(string: path) {
+                UIApplication.sharedApplication().openURL(url)
+            } else {
+                // Could not construct url. Handle error.
+            }
             
+
             break
         case 5:
             mailing()
